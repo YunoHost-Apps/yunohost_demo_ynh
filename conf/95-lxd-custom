@@ -1,0 +1,42 @@
+#!/bin/bash
+
+iptables -w -A INPUT -i lxdbr0 -p icmp -m icmp --icmp-type 12 -m comment --comment "generated for LXD network lxdbr0" -j ACCEPT
+iptables -w -A INPUT -i lxdbr0 -p icmp -m icmp --icmp-type 11 -m comment --comment "generated for LXD network lxdbr0" -j ACCEPT
+iptables -w -A INPUT -i lxdbr0 -p icmp -m icmp --icmp-type 3 -m comment --comment "generated for LXD network lxdbr0" -j ACCEPT
+iptables -w -A INPUT -i lxdbr0 -p tcp -m tcp --dport 53 -m comment --comment "generated for LXD network lxdbr0" -j ACCEPT
+iptables -w -A INPUT -i lxdbr0 -p udp -m udp --dport 53 -m comment --comment "generated for LXD network lxdbr0" -j ACCEPT
+iptables -w -A INPUT -i lxdbr0 -p udp -m udp --dport 67 -m comment --comment "generated for LXD network lxdbr0" -j ACCEPT
+
+iptables -w -A FORWARD -o lxdbr0 -m comment --comment "generated for LXD network lxdbr0" -j ACCEPT
+iptables -w -A FORWARD -i lxdbr0 -m comment --comment "generated for LXD network lxdbr0" -j ACCEPT
+iptables -w -A OUTPUT -o lxdbr0 -p icmp -m icmp --icmp-type 12 -m comment --comment "generated for LXD network lxdbr0" -j ACCEPT
+iptables -w -A OUTPUT -o lxdbr0 -p icmp -m icmp --icmp-type 11 -m comment --comment "generated for LXD network lxdbr0" -j ACCEPT
+iptables -w -A OUTPUT -o lxdbr0 -p icmp -m icmp --icmp-type 3 -m comment --comment "generated for LXD network lxdbr0" -j ACCEPT
+iptables -w -A OUTPUT -o lxdbr0 -p tcp -m tcp --sport 53 -m comment --comment "generated for LXD network lxdbr0" -j ACCEPT
+iptables -w -A OUTPUT -o lxdbr0 -p udp -m udp --sport 53 -m comment --comment "generated for LXD network lxdbr0" -j ACCEPT
+iptables -w -A OUTPUT -o lxdbr0 -p udp -m udp --sport 67 -m comment --comment "generated for LXD network lxdbr0" -j ACCEPT
+
+iptables -w -A POSTROUTING -s __LXDBR0_NETWORK_ADDRESS__.0/24 ! -d __LXDBR0_NETWORK_ADDRESS__.0/24 -m comment --comment "generated for LXD network lxdbr0" -j MASQUERADE
+iptables -w -A POSTROUTING -o lxdbr0 -p udp -m udp --dport 68 -m comment --comment "generated for LXD network lxdbr0" -j CHECKSUM --checksum-fill
+
+iptables -w -A INPUT -i __LXDBR_DEMO_NAME__ -p icmp -m icmp --icmp-type 12 -m comment --comment "generated for LXD network __LXDBR_DEMO_NAME__" -j ACCEPT
+iptables -w -A INPUT -i __LXDBR_DEMO_NAME__ -p icmp -m icmp --icmp-type 11 -m comment --comment "generated for LXD network __LXDBR_DEMO_NAME__" -j ACCEPT
+iptables -w -A INPUT -i __LXDBR_DEMO_NAME__ -p icmp -m icmp --icmp-type 3 -m comment --comment "generated for LXD network __LXDBR_DEMO_NAME__" -j ACCEPT
+iptables -w -A INPUT -i __LXDBR_DEMO_NAME__ -p tcp -m tcp --dport 53 -m comment --comment "generated for LXD network __LXDBR_DEMO_NAME__" -j ACCEPT
+iptables -w -A INPUT -i __LXDBR_DEMO_NAME__ -p udp -m udp --dport 53 -m comment --comment "generated for LXD network __LXDBR_DEMO_NAME__" -j ACCEPT
+iptables -w -A INPUT -i __LXDBR_DEMO_NAME__ -p udp -m udp --dport 67 -m comment --comment "generated for LXD network __LXDBR_DEMO_NAME__" -j ACCEPT
+
+iptables -w -A FORWARD -o __LXDBR_DEMO_NAME__ -m comment --comment "generated for LXD network __LXDBR_DEMO_NAME__" -j ACCEPT
+iptables -w -A FORWARD -i __LXDBR_DEMO_NAME__ -m comment --comment "generated for LXD network __LXDBR_DEMO_NAME__" -j ACCEPT
+iptables -w -A OUTPUT -o __LXDBR_DEMO_NAME__ -p icmp -m icmp --icmp-type 12 -m comment --comment "generated for LXD network __LXDBR_DEMO_NAME__" -j ACCEPT
+iptables -w -A OUTPUT -o __LXDBR_DEMO_NAME__ -p icmp -m icmp --icmp-type 11 -m comment --comment "generated for LXD network __LXDBR_DEMO_NAME__" -j ACCEPT
+iptables -w -A OUTPUT -o __LXDBR_DEMO_NAME__ -p icmp -m icmp --icmp-type 3 -m comment --comment "generated for LXD network __LXDBR_DEMO_NAME__" -j ACCEPT
+iptables -w -A OUTPUT -o __LXDBR_DEMO_NAME__ -p tcp -m tcp --sport 53 -m comment --comment "generated for LXD network __LXDBR_DEMO_NAME__" -j ACCEPT
+iptables -w -A OUTPUT -o __LXDBR_DEMO_NAME__ -p udp -m udp --sport 53 -m comment --comment "generated for LXD network __LXDBR_DEMO_NAME__" -j ACCEPT
+iptables -w -A OUTPUT -o __LXDBR_DEMO_NAME__ -p udp -m udp --sport 67 -m comment --comment "generated for LXD network __LXDBR_DEMO_NAME__" -j ACCEPT
+
+iptables -w -A POSTROUTING -s __LXDBR_DEMO_NETWORK__.0/24 ! -d __LXDBR_DEMO_NETWORK__.0/24 -m comment --comment "generated for LXD network __LXDBR_DEMO_NAME__" -j MASQUERADE
+iptables -w -A POSTROUTING -o __LXDBR_DEMO_NAME__ -p udp -m udp --dport 68 -m comment --comment "generated for LXD network __LXDBR_DEMO_NAME__" -j CHECKSUM --checksum-fill
+
+
+exit 0

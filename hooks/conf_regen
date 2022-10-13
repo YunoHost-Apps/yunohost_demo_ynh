@@ -1,0 +1,18 @@
+#!/bin/bash
+
+action=$1
+pending_dir=$4
+nginx_conf=$pending_dir/../nginx/etc/nginx
+
+[[ "$action" == "pre" ]] || exit 0
+yunohost_demo_domain=$(yunohost app setting yunohost_demo domain)
+yunohost_demo_nginx_conf="$nginx_conf"/conf.d/"$domain".conf
+
+
+[[ ! -z $yunohost_demo_domain ]] || exit 0
+[[ -e $yunohost_demo_nginx_conf ]] || exit 0
+
+sed -i '@ include /etc/nginx/conf.d/yunohost_sso.conf.inc;@ #include /etc/nginx/conf.d/yunohost_sso.conf.inc;@' $yunohost_demo_nginx_conf
+sed -i '@ include /etc/nginx/conf.d/yunohost_admin.conf.inc;@ #include /etc/nginx/conf.d/yunohost_admin.conf.inc;@' $yunohost_demo_nginx_conf
+sed -i '@ include /etc/nginx/conf.d/yunohost_sso.conf.inc;@ #include /etc/nginx/conf.d/yunohost_sso.conf.inc;@' $yunohost_demo_nginx_conf
+sed -i '@ include /etc/nginx/conf.d/yunohost_api.conf.inc;@ #include /etc/nginx/conf.d/yunohost_api.conf.inc;@' $yunohost_demo_nginx_conf
