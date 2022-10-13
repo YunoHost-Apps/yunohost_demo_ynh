@@ -7,7 +7,6 @@
 #=================================================
 
 source _common.sh
-source ynh_lxd
 source /usr/share/yunohost/helpers
 
 #=================================================
@@ -128,7 +127,7 @@ ynh_script_progression --message="Configuring NGINX web server..." --weight=1
 
 # Create a dedicated NGINX config
 ynh_add_nginx_config
-ynh_add_config --template="nginx_upstream.conf" --destination="/etc/nginx/conf.d/upstream_$domain.conf"
+ynh_add_config --template="nginx_upstream.conf" --destination="/etc/nginx/conf.d/upstream_$app.conf"
 
 #=================================================
 # SPECIFIC SETUP
