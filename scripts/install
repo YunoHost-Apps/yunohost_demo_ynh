@@ -106,14 +106,12 @@ ynh_script_progression --message="Setting up source files..." --weight=1
 
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 # Download, check integrity, uncompress and patch the source from app.src
-#git init "$final_path"
-#pushd "$final_path"
-#	git remote add origin "$demo_repository"
-#	git fetch --quiet --depth=1 origin "$demo_release"
-#	git reset --quiet --hard FETCH_HEAD
-#popd
-mkdir -p /opt/yunohost/
-cp -rf /home/yunohost.app/syncthing/Projets/YunoHost/yunohost_demo /opt/yunohost/
+git init "$final_path"
+pushd "$final_path"
+	git remote add origin "$demo_repository"
+	git fetch --quiet --depth=1 origin "$demo_release"
+	git reset --quiet --hard FETCH_HEAD
+popd
 cp ynh_lxd "$final_path/ynh_lxd"
 
 chmod 750 "$final_path"

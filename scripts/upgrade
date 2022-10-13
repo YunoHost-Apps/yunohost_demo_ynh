@@ -76,6 +76,7 @@ then
 		git fetch --quiet --depth=1 origin "$demo_release"
 		git reset --quiet --hard FETCH_HEAD
 	popd
+	cp ynh_lxd "$final_path/ynh_lxd"
 fi
 
 chmod 750 "$final_path"
