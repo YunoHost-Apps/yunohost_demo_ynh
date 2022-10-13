@@ -137,17 +137,18 @@ ynh_script_progression --message="Configuring LXD..." --weight=1
 free_space=$(df --output=avail / | sed 1d)
 btrfs_size=$(( $free_space * 90 / 100 / 1024 / 1024 ))
 
-ynh_add_config --template="preseed.conf" --destination="$final_path/preseed.conf"
+if [ ${PACKAGE_CHECK_EXEC:-0} -eq 1 ]; then
+	ynh_add_config --template="package_check_preseed.conf" --destination="$final_path/preseed.conf"
+else
+	ynh_add_config --template="preseed.conf" --destination="$final_path/preseed.conf"
+fi
+
 cat "$final_path/preseed.conf" | lxd init --preseed
 ynh_delete_file_checksum --file="$final_path/preseed.conf"
 ynh_secure_remove --file="$final_path/preseed.conf"
 
 # app will be the one launching job, gives it permission to run lxd commands
 usermod -a -G lxd $app
-
-# We need a home for the "su" command later ?
-mkdir -p /home/$app
-chown -R $app /home/$app
 
 su $app -s /bin/bash -c "lxc remote add yunohost https://devbaseimgs.yunohost.org --public --accept-certificate"
 
