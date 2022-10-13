@@ -3,7 +3,7 @@
     "id": "yunohost_demo",
     "packaging_format": 1,
     "description": {
-        "en": "YunoHost demo server on LXC"
+        "en": "YunoHost demo server on LXD"
     },
     "version": "1.0~ynh1",
     "url": "https://github.com/YunoHost/yunohost_demo",
