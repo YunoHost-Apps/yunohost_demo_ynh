@@ -44,7 +44,7 @@ ynh_lxc_status() {
 	then
 		lxc list --format json | jq -r --arg name $name '.[] | select(.name==$name) | .state | .status'
 	else
-		return ''
+		return 1
 	fi
 }
 
