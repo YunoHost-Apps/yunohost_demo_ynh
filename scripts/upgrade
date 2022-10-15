@@ -76,7 +76,6 @@ then
 		ynh_exec_warn_less git fetch --quiet --depth=1 origin "$demo_release"
 		ynh_exec_warn_less git reset --quiet --hard FETCH_HEAD
 	popd
-	cp ynh_lxd "$final_path/ynh_lxd"
 fi
 
 chmod 750 "$final_path"
