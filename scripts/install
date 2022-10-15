@@ -69,7 +69,7 @@ ynh_app_setting_set --app=$app --key=domain --value=$domain
 ynh_app_setting_set --app=$app --key=path --value=$path_url
 ynh_app_setting_set --app=$app --key=demo_user --value=$demo_user
 ynh_app_setting_set --app=$app --key=demo_password --value=$demo_password
-ynh_app_setting_set --app=$app --key=demo_password --value=$demo_package
+ynh_app_setting_set --app=$app --key=demo_package --value=$demo_package
 ynh_app_setting_set --app=$app --key=lxc_name1 --value=$lxc_name1
 ynh_app_setting_set --app=$app --key=lxc_name2 --value=$lxc_name2
 ynh_app_setting_set --app=$app --key=lxdbr_demo_name --value=$lxdbr_demo_name
