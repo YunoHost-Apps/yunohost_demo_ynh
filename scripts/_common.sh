@@ -9,7 +9,7 @@ pkg_dependencies=""
 
 demo_repository="https://github.com/YunoHost/yunohost_demo"
 
-demo_release="6d7d377a9afe003c18a8ee62670ee31703771566"
+demo_release="22edb9b5977ec247cb39dbd3128a9f8273e43fb9"
 
 app_dependencies="lxd"
 
