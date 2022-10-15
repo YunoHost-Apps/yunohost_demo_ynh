@@ -73,8 +73,8 @@ then
 
 	# Download, check integrity, uncompress and patch the source from app.src
 	pushd "$final_path"
-		git fetch --quiet --depth=1 origin "$demo_release"
-		git reset --quiet --hard FETCH_HEAD
+		ynh_exec_warn_less git fetch --quiet --depth=1 origin "$demo_release"
+		ynh_exec_warn_less git reset --quiet --hard FETCH_HEAD
 	popd
 	cp ynh_lxd "$final_path/ynh_lxd"
 fi

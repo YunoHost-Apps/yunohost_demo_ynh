@@ -106,11 +106,11 @@ ynh_script_progression --message="Setting up source files..." --weight=1
 
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 # Download, check integrity, uncompress and patch the source from app.src
-git init "$final_path"
+ynh_exec_warn_less git init "$final_path"
 pushd "$final_path"
-	git remote add origin "$demo_repository"
-	git fetch --quiet --depth=1 origin "$demo_release"
-	git reset --quiet --hard FETCH_HEAD
+	ynh_exec_warn_less git remote add origin "$demo_repository"
+	ynh_exec_warn_less git fetch --quiet --depth=1 origin "$demo_release"
+	ynh_exec_warn_less git reset --quiet --hard FETCH_HEAD
 popd
 cp ynh_lxd "$final_path/ynh_lxd"
 
@@ -137,7 +137,7 @@ ynh_script_progression --message="Configuring LXD..." --weight=1
 free_space=$(df --output=avail / | sed 1d)
 btrfs_size=$(( $free_space * 90 / 100 / 1024 / 1024 ))
 
-if [ ${PACKAGE_CHECK_EXEC:-0} -eq 1 ]; then
+if [ ${FOR_PACKAGE_CHECK:-0} -eq 1 ]; then
 	ynh_add_config --template="package_check_preseed.conf" --destination="$final_path/preseed.conf"
 else
 	ynh_add_config --template="preseed.conf" --destination="$final_path/preseed.conf"
