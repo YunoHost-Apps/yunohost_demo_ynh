@@ -96,6 +96,10 @@ ynh_install_apps --apps="$app_dependencies"
 #=================================================
 ynh_script_progression --message="Upgrading NGINX web server configuration..." --weight=1
 
+# Set Hook for nginx domain
+cp -R ../sources/hooks/conf_regen/95-nginx_yunohost_demo /usr/share/yunohost/hooks/conf_regen/
+yunohost tools regen-conf nginx
+
 # Create a dedicated NGINX config
 ynh_add_nginx_config
 ynh_add_config --template="nginx_upstream.conf" --destination="/etc/nginx/conf.d/upstream_$app.conf"

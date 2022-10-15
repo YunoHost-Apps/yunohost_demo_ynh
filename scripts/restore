@@ -76,8 +76,10 @@ ynh_install_apps --apps="$app_dependencies"
 #=================================================
 ynh_script_progression --message="Restoring the NGINX web server configuration..." --weight=1
 
+ynh_restore_file --origin_path="/usr/share/yunohost/hooks/conf_regen/95-nginx_yunohost_demo"
 ynh_restore_file --origin_path="/etc/nginx/conf.d/$domain.d/$app.conf"
 ynh_restore_file --origin_path="/etc/nginx/conf.d/upstream_$app.conf"
+yunohost tools regen-conf nginx
 
 #=================================================
 # RESTORE SYSTEMD
