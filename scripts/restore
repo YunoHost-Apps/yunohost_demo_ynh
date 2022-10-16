@@ -82,14 +82,6 @@ ynh_restore_file --origin_path="/etc/nginx/conf.d/upstream_$app.conf"
 yunohost tools regen-conf nginx
 
 #=================================================
-# RESTORE SYSTEMD
-#=================================================
-ynh_script_progression --message="Restoring the systemd configuration..." --weight=1
-
-ynh_restore_file --origin_path="/etc/systemd/system/$app.service"
-systemctl enable $app.service --quiet
-
-#=================================================
 # BUILDING DEMO
 #=================================================
 ynh_script_progression --message="Building demo..." --weight=1
