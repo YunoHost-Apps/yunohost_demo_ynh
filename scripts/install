@@ -153,7 +153,10 @@ ynh_secure_remove --file="$final_path/preseed.conf"
 # app will be the one launching job, gives it permission to run lxd commands
 usermod -a -G lxd $app
 
-su $app -s /bin/bash -c "lxc remote add yunohost https://devbaseimgs.yunohost.org --public --accept-certificate"
+if ! su $app -s /bin/bash -c "lxc remote list" | grep -q "devbaseimgs.yunohost.org"
+then
+	su $app -s /bin/bash -c "lxc remote add yunohost https://devbaseimgs.yunohost.org --public --accept-certificate"
+fi
 
 # Configure iptables
 lxdbr0_network_address=$(lxc network get lxdbr0 ipv4.address | cut -d'.' -f1-3)
