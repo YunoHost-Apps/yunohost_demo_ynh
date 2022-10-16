@@ -19,6 +19,8 @@ app=$YNH_APP_INSTANCE_NAME
 domain=$(ynh_app_setting_get --app=$app --key=domain)
 path_url=$(ynh_app_setting_get --app=$app --key=path)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
+lxc_ip1=$(ynh_app_setting_get --app=$app --key=lxc_ip1)
+lxc_ip2=$(ynh_app_setting_get --app=$app --key=lxc_ip2)
 
 #=================================================
 # CHECK VERSION
