@@ -3,7 +3,6 @@
 		domain="domain.tld"
 		demo_user="demo"
 		demo_password="demo"
-		demo_package="full"
 	; Checks
 		pkg_linter=1
 		setup_sub_dir=0

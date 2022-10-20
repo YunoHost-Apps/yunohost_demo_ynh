@@ -48,15 +48,6 @@
                 "ask": {
                     "en": "Define the demo password"
                 }
-            },
-            {
-                "name": "demo_package",
-                "type": "string",
-                "ask": {
-                    "en": "Which demo package do you want to install ?"
-                },
-                "choices": ["full", "simple"],
-                "default": "full"
             }
         ]
     }
