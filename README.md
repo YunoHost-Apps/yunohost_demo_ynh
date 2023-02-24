@@ -5,7 +5,8 @@ It shall NOT be edited by hand.
 
 # YunoHost Demo for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/yunohost_demo.svg)](https://dash.yunohost.org/appci/app/yunohost_demo) ![Working status](https://ci-apps.yunohost.org/ci/badges/yunohost_demo.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/yunohost_demo.maintain.svg)  
+[![Integration level](https://dash.yunohost.org/integration/yunohost_demo.svg)](https://dash.yunohost.org/appci/app/yunohost_demo) ![Working status](https://ci-apps.yunohost.org/ci/badges/yunohost_demo.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/yunohost_demo.maintain.svg)
+
 [![Install YunoHost Demo with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=yunohost_demo)
 
 *[Lire ce readme en français.](./README_fr.md)*

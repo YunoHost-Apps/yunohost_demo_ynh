@@ -5,15 +5,16 @@ It shall NOT be edited by hand.
 
 # YunoHost Demo pour YunoHost
 
-[![Niveau d'intégration](https://dash.yunohost.org/integration/yunohost_demo.svg)](https://dash.yunohost.org/appci/app/yunohost_demo) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/yunohost_demo.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/yunohost_demo.maintain.svg)  
+[![Niveau d’intégration](https://dash.yunohost.org/integration/yunohost_demo.svg)](https://dash.yunohost.org/appci/app/yunohost_demo) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/yunohost_demo.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/yunohost_demo.maintain.svg)
+
 [![Installer YunoHost Demo avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=yunohost_demo)
 
 *[Read this readme in english.](./README.md)*
 
-> *Ce package vous permet d'installer YunoHost Demo rapidement et simplement sur un serveur YunoHost.
-Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
+> *Ce package vous permet d’installer YunoHost Demo rapidement et simplement sur un serveur YunoHost.
+Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l’installer et en profiter.*
 
-## Vue d'ensemble
+## Vue d’ensemble
 
 YunoHost demo server in LXD
 
@@ -23,8 +24,8 @@ YunoHost demo server in LXD
 **Démo :** https://demo.yunohost.org
 ## Documentations et ressources
 
-* Site officiel de l'app : <https://github.com/YunoHost/yunohost_demo>
-* Dépôt de code officiel de l'app : <https://github.com/YunoHost/yunohost_demo>
+* Site officiel de l’app : <https://github.com/YunoHost/yunohost_demo>
+* Dépôt de code officiel de l’app : <https://github.com/YunoHost/yunohost_demo>
 * Documentation YunoHost pour cette app : <https://yunohost.org/app_yunohost_demo>
 * Signaler un bug : <https://github.com/YunoHost-Apps/yunohost_demo_ynh/issues>
 
@@ -40,4 +41,4 @@ ou
 sudo yunohost app upgrade yunohost_demo -u https://github.com/YunoHost-Apps/yunohost_demo_ynh/tree/testing --debug
 ```
 
-**Plus d'infos sur le packaging d'applications :** <https://yunohost.org/packaging_apps>
+**Plus d’infos sur le packaging d’applications :** <https://yunohost.org/packaging_apps>
