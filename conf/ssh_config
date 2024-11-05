@@ -1,0 +1,4 @@
+Host __CONTAINER_NAME__
+Hostname __CONTAINER_IP__
+User ssh_demo
+IdentityFile ~/.ssh/__APP__

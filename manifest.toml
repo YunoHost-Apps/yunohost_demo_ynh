@@ -1,0 +1,52 @@
+#:schema https://raw.githubusercontent.com/YunoHost/apps/master/schemas/manifest.v2.schema.json
+
+packaging_format = 2
+
+id = "yunohost_demo"
+name = "YunoHost Demo"
+
+description.en = "YunoHost Demo"
+description.fr = "YunoHost Demo"
+
+version = "1.0~ynh1"
+
+maintainers = []
+
+[upstream]
+license = "AGPL-3.0"
+website = "https://demo.yunohost.org"
+demo = "https://demo.yunohost.org"
+admindoc = "https://yunohost.org/admindoc"
+
+code = "https://github.com/yunohost/yunohost"
+
+[integration]
+yunohost = '>= 11.2.30'
+helpers_version = "2.1"
+architectures = ["amd64"]
+multi_instance = true
+ldap = "not_relevant"
+sso = "not_relevant"
+disk = "50M"
+ram.build = "50M"
+ram.runtime = "50M"
+
+[install]
+
+    [install.domain]
+    type = "domain"
+
+    [install.init_main_permission]
+    type = "group"
+    default = "visitors"
+
+[resources]
+
+    [resources.system_user]
+
+    [resources.install_dir]
+
+    [resources.permissions]
+    main.url = "/"
+
+    [resources.ports]
