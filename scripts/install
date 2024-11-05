@@ -19,16 +19,17 @@ usermod -a -G incus "$app"
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_script_progression "Setting up source files..."
+ynh_script_progression "Fetchin LXC container..."
 
-ynh_setup_source --dest_dir="$install_dir"
+start_instance
 
-chown -R $app:www-data "$install_dir"
+container_ip="$(get_instance_ipv4)"
+ynh_app_setting_set --key=container_ip --value="$container_ip"
 
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
-ynh_script_progression "Adding app's configuration..."
+# ynh_script_progression "Adding app's configuration..."
 
 # ynh_exec_as_app mkdir "$install_dir/.ssh"
 # ynh_config_add --template="ssh_config" --destination="$install_dir/.ssh/config"
@@ -42,36 +43,20 @@ ynh_script_progression "Adding system configurations related to $app..."
 
 ynh_config_add_nginx
 
-ynh_config_add_systemd
+# ynh_config_add_systemd
 
-yunohost service add "$app" --description="A short description of the app" --log="/var/log/$app/$app.log"
+# yunohost service add "$app" --description="A short description of the app" --log="/var/log/$app/$app.log"
 
 ynh_config_add_logrotate
 
 ynh_config_add --template="sysctl.conf" --destination="/etc/sysctl.d/$app.conf"
 
 #=================================================
-# INSTALL APP
-#=================================================
-ynh_script_progression "Installing $app..."
-
-pushd $install_dir
-    some_command --build
-popd
-
-#=================================================
-# FINALIZE APP INSTALL WITH CURL
-#=================================================
-ynh_script_progression "Finalizing installation..."
-
-ynh_local_curl "/INSTALL_PATH" "key1=value1" "key2=value2" "key3=value3"
-
-#=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression "Starting app's systemd service..."
+# ynh_script_progression "Starting app's systemd service..."
 
-ynh_systemd_action --service="$app" --action="start"
+# ynh_systemd_action --service="$app" --action="start"
 
 #=================================================
 # END OF SCRIPT
