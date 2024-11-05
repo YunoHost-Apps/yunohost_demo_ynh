@@ -19,25 +19,30 @@ setup_incus() {
 }
 
 start_instance() {
-    incus image copy "yunohost:$image_name" local: --copy-aliases
-    incus launch "$image_name" "$container_name"
+    ynh_exec_as_app incus image copy "yunohost:$image_name" local: --copy-aliases
+    ynh_exec_as_app incus launch "$image_name" "$container_name"
 }
 
 get_instance_ipv4() {
-    incus list --format json \
+    ynh_exec_as_app incus list --format json \
         | jq -r ' .[] | select(.name == "'"$container_name"'") | .state.network.eth0.addresses[] | select(.family == "inet") | .address'
 }
 
+
+_incus_exec() {
+    ynh_exec_as_app incus exec "$container_name" -- "$@"
+}
+
 customize_instance() {
-    mapfile -t apps < <( incus exec "$container_name" -- yunohost app list --output-as json | jq -r '.[] | map(.id) | .[]' )
+    mapfile -t apps < <(_incus_exec yunohost app list --output-as json | jq -r '.[] | map(.id) | .[]' )
 
     if [[ "$domain" != "demo.yunohost.org" ]]; then
-        incus exec "$container_name" -- yunohost domain add "$domain"
+        _incus_exec yunohost domain add "$domain"
         for app in "${apps[@]}"; do
-            path=$(incus exec "$container_name" -- yunohost app info "$app" --output-as json | jq -r '.domain_path' | sed 's|.*/\(.*\)|/\1|')
-            incus exec "$container_name" -- yunohost app change-url -d "$domain" -p "$path"
+            path=$(_incus_exec yunohost app info "$app" --output-as json | jq -r '.domain_path' | sed 's|.*/\(.*\)|/\1|')
+            _incus_exec yunohost app change-url -d "$domain" -p "$path"
         done
-        incus exec "$container_name" -- yunohost domain main-domain -n "$domain"
-        incus exec "$container_name" -- yunohost domain remove "demo.yunohost.org"
+        _incus_exec yunohost domain main-domain -n "$domain"
+        _incus_exec yunohost domain remove "demo.yunohost.org"
     fi
 }
