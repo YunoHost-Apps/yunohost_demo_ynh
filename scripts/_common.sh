@@ -4,7 +4,7 @@
 # COMMON VARIABLES AND CUSTOM HELPERS
 #=================================================
 
-image_name="yunohost/bookworm/demo"
+image_name="yunohost/bookworm-stable/demo"
 container_name="$app"
 
 setup_incus() {
