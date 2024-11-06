@@ -5,7 +5,7 @@
 #=================================================
 
 image_name="yunohost/bookworm-stable/demo"
-container_name="$app"
+container_name="${app//_/-}"
 
 setup_incus() {
     ynh_print_info "Configuring Incus..."
