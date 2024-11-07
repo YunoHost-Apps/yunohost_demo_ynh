@@ -19,7 +19,7 @@ setup_incus() {
 }
 
 start_instance() {
-    ynh_exec_as_app incus image copy "yunohost:$image_name" local: --copy-aliases
+    ynh_exec_as_app incus image copy --auto-update "yunohost:$image_name" local: --copy-aliases
     ynh_exec_as_app incus launch "$image_name" "$container_name"
 }
 
