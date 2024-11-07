@@ -53,8 +53,8 @@ customize_instance() {
     if [[ "$domain" != "demo.yunohost.org" ]]; then
         _incus_exec yunohost domain add "$domain"
         for _app in "${apps[@]}"; do
-            path=$(_incus_exec yunohost app info "$_app" --output-as json | jq -r '.domain_path' | sed 's|.*/\(.*\)|/\1|')
-            _incus_exec yunohost app change-url "$_app" -d "$domain" -p "$path"
+            _path=$(_incus_exec yunohost app info "$_app" --output-as json | jq -r '.domain_path' | sed 's|.*/\(.*\)|/\1|')
+            _incus_exec yunohost app change-url "$_app" -d "$domain" -p "$_path"
         done
         _incus_exec yunohost domain main-domain -n "$domain"
         _incus_exec yunohost domain remove "demo.yunohost.org"
