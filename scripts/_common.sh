@@ -23,6 +23,10 @@ start_instance() {
     ynh_exec_as_app incus launch "$image_name" "$container_name"
 }
 
+remove_instance() {
+    ynh_exec_as_app incus delete --force "$container_name"
+}
+
 get_instance_ipv4() {
     _get_instance_ipv4() {
         ynh_exec_as_app incus list --format json \
