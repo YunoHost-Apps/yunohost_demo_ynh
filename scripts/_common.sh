@@ -24,8 +24,18 @@ start_instance() {
 }
 
 get_instance_ipv4() {
-    ynh_exec_as_app incus list --format json \
-        | jq -r ' .[] | select(.name == "'"$container_name"'") | .state.network.eth0.addresses[] | select(.family == "inet") | .address'
+    _get_instance_ipv4() {
+        ynh_exec_as_app incus list --format json \
+            | jq -r ' .[] | select(.name == "'"$container_name"'") | .state.network.eth0.addresses[] | select(.family == "inet") | .address'
+    }
+    for _ in $(seq 0 20); do
+        ip=$(_get_instance_ipv4)
+        if [[ -n "$ip" ]]; then
+            echo "$ip"
+            return
+        fi
+        sleep 1
+    done
 }
 
 
