@@ -11,18 +11,22 @@ source /usr/share/yunohost/helpers
 #=================================================
 # STOP SYSTEMD SERVICE
 #=================================================
-ynh_script_progression "Stopping a systemd service..."
+# ynh_script_progression "Stopping a systemd service..."
 
-ynh_systemctl --service="$app" --action="stop"
+# ynh_systemctl --service="$app" --action="stop"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_script_progression "Upgrading source files..."
+ynh_script_progression "Fetchin LXC container..."
 
-ynh_setup_source --dest_dir="$install_dir" --full_replace --keep=""
+remove_instance
+start_instance
 
-chown -R $app:www-data "$install_dir"
+container_ip="$(get_instance_ipv4)"
+ynh_app_setting_set --key=container_ip --value="$container_ip"
+
+customize_instance
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
@@ -31,18 +35,20 @@ ynh_script_progression "Upgrading system configurations related to $app..."
 
 ynh_config_add_nginx
 
-ynh_config_add_systemd
+# ynh_config_add_systemd
 
-yunohost service add "$app" --description="A short description of the app" --log="/var/log/$app/$app.log"
+# yunohost service add "$app" --description="A short description of the app" --log="/var/log/$app/$app.log"
 
 ynh_config_add_logrotate
+
+ynh_config_add --template="sysctl.conf" --destination="/etc/sysctl.d/$app.conf"
 
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression "Starting a systemd service..."
+# ynh_script_progression "Starting a systemd service..."
 
-ynh_systemctl --service="$app" --action="start"
+# ynh_systemctl --service="$app" --action="start"
 
 #=================================================
 # END OF SCRIPT

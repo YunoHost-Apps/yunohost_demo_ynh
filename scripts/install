@@ -26,6 +26,8 @@ start_instance
 container_ip="$(get_instance_ipv4)"
 ynh_app_setting_set --key=container_ip --value="$container_ip"
 
+customize_instance
+
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
