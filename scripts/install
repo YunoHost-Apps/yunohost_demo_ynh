@@ -35,6 +35,7 @@ chown "$app:$app" "$install_dir/manage.sh"
 #=================================================
 ynh_script_progression "Adding system configurations related to $app..."
 
+ynh_config_add --template="nginx-upstreams.conf" --destination="/etc/nginx/conf.d/$app-upstreams.conf"
 ynh_config_add_nginx
 
 # ynh_config_add_systemd
