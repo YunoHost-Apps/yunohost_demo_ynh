@@ -5,6 +5,9 @@
 #=================================================
 
 app_sanitized="${app//_/-}"
+container_name_1="${app_sanitized}-container1"
+container_name_2="${app_sanitized}-container2"
+
 
 setup_incus() {
     ynh_print_info "Configuring Incus..."

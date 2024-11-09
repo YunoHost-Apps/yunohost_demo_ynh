@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 
-APP=__APP_SANITIZED__
 IMAGE="yunohost/bookworm-stable/demo"
-
-container1="${APP}-container1"
-container2="${APP}-container2"
+container1="__CONTAINER_NAME_1__"
+container2="__CONTAINER_NAME_2__"
 
 _incus_exec() {
     incus exec "$container" -- "$@"
@@ -16,9 +14,9 @@ _customize() {
 
     if [[ "$domain" != "demo.yunohost.org" ]]; then
         _incus_exec yunohost domain add "$domain"
-        for app in "${apps[@]}"; do
-            path=$(_incus_exec yunohost app info "$app" --output-as json | jq -r '.domain_path' | sed 's|.*/\(.*\)|/\1|')
-            _incus_exec yunohost app change-url -d "$domain" -p "$path"
+        for _app in "${apps[@]}"; do
+            _path=$(_incus_exec yunohost app info "$_app" --output-as json | jq -r '.domain_path' | sed 's|.*/\(.*\)|/\1|')
+            _incus_exec yunohost app change-url -d "$domain" -p "$_path"
         done
         _incus_exec yunohost domain main-domain -n "$domain"
         _incus_exec yunohost domain remove "demo.yunohost.org"
