@@ -35,9 +35,6 @@ start() {
         2) container="$container2" ;;
         *) echo "Invalid container ID $1" ; return 1 ;;
     esac
-    if incus list --format json | jq -r 'map(.name) | @sh' | grep "'$container'"; then
-        incus delete "$container" --force
-    fi
     download_image
     incus launch "$IMAGE" "$container"
     _customize "$container"
@@ -51,6 +48,7 @@ stop() {
         *) echo "Invalid container ID $1" ; return 1 ;;
     esac
     incus stop "$container"
+    incus delete "$container" --force
 }
 
 swap() {
@@ -72,7 +70,7 @@ help() {
 Usage: $0 <command> [<container>]
 Available <command>s:
     start: Start the container 1 or 2 (defaults to 1) and customize it for the configured domain
-    stop: Stop the container 1, 2, or all (defaults to all)
+    stop: Stop and delete the container 1, 2, or all (defaults to all)
     swap: Start a new (clean) container customize it, then stop the old one.
 EOF
 }

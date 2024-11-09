@@ -16,19 +16,6 @@ source /usr/share/yunohost/helpers
 # ynh_systemctl --service="$app" --action="stop"
 
 #=================================================
-# DOWNLOAD, CHECK AND UNPACK SOURCE
-#=================================================
-ynh_script_progression "Fetchin LXC container..."
-
-remove_instance
-start_instance
-
-container_ip="$(get_instance_ipv4)"
-ynh_app_setting_set --key=container_ip --value="$container_ip"
-
-customize_instance
-
-#=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
 ynh_script_progression "Upgrading system configurations related to $app..."
@@ -49,6 +36,15 @@ ynh_config_add --template="sysctl.conf" --destination="/etc/sysctl.d/$app.conf"
 # ynh_script_progression "Starting a systemd service..."
 
 # ynh_systemctl --service="$app" --action="start"
+
+#=================================================
+# START CONTAINER
+#=================================================
+ynh_script_progression "Fetching, starting and customizing initial container..."
+
+"$install_dir/manage.sh" start
+
+# ynh_systemd_action --service="$app" --action="start"
 
 #=================================================
 # END OF SCRIPT
