@@ -16,6 +16,15 @@ source /usr/share/yunohost/helpers
 # ynh_systemctl --service="$app" --action="stop"
 
 #=================================================
+# ADD A CONFIGURATION
+#=================================================
+ynh_script_progression "Adding app's script..."
+
+ynh_config_add --template="manage.sh" --destination="$install_dir/manage.sh"
+chmod 711 "$install_dir/manage.sh"
+chown "$app:$app" "$install_dir/manage.sh"
+
+#=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
 ynh_script_progression "Upgrading system configurations related to $app..."
