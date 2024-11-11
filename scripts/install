@@ -9,7 +9,7 @@ source /usr/share/yunohost/helpers
 ynh_script_progression "Installing Incus... (this make take a long time!)"
 
 if ! yunohost app list --output-as json --quiet | jq -e '.apps[] | select(.id == "incus")' >/dev/null; then
-    yunohost app install --force incus
+    yunohost app install --force incus -a cluster=no
 fi
 
 setup_incus
