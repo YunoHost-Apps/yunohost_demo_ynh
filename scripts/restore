@@ -47,7 +47,7 @@ ynh_systemctl --service=nginx --action=reload
 #=================================================
 ynh_script_progression "Fetching, starting and customizing initial container..."
 
-"$install_dir/manage.sh" start
+ynh_exec_as_app "$install_dir/manage.sh" start
 
 #=================================================
 # END OF SCRIPT

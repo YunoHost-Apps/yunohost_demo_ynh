@@ -24,7 +24,7 @@ _customize() {
 }
 
 download_image() {
-    ynh_exec_as_app incus image copy "yunohost:$IMAGE" local: --copy-aliases --auto-update
+    incus image copy "yunohost:$IMAGE" local: --copy-aliases --auto-update
 }
 
 start() {
