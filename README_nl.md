@@ -5,7 +5,9 @@ Hij mag NIET handmatig aangepast worden.
 
 # YunoHost Demo voor Yunohost
 
-[![Integratieniveau](https://dash.yunohost.org/integration/yunohost_demo.svg)](https://ci-apps.yunohost.org/ci/apps/yunohost_demo/) ![Mate van functioneren](https://ci-apps.yunohost.org/ci/badges/yunohost_demo.status.svg) ![Onderhoudsstatus](https://ci-apps.yunohost.org/ci/badges/yunohost_demo.maintain.svg)
+[![Integratieniveau](https://apps.yunohost.org/badge/integration/yunohost_demo)](https://ci-apps.yunohost.org/ci/apps/yunohost_demo/)
+![Mate van functioneren](https://apps.yunohost.org/badge/state/yunohost_demo)
+![Onderhoudsstatus](https://apps.yunohost.org/badge/maintained/yunohost_demo)
 
 [![YunoHost Demo met Yunohost installeren](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=yunohost_demo)
 

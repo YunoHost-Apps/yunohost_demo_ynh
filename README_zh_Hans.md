@@ -5,7 +5,9 @@
 
 # YunoHost 上的 YunoHost Demo
 
-[![集成程度](https://dash.yunohost.org/integration/yunohost_demo.svg)](https://ci-apps.yunohost.org/ci/apps/yunohost_demo/) ![工作状态](https://ci-apps.yunohost.org/ci/badges/yunohost_demo.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/yunohost_demo.maintain.svg)
+[![集成程度](https://apps.yunohost.org/badge/integration/yunohost_demo)](https://ci-apps.yunohost.org/ci/apps/yunohost_demo/)
+![工作状态](https://apps.yunohost.org/badge/state/yunohost_demo)
+![维护状态](https://apps.yunohost.org/badge/maintained/yunohost_demo)
 
 [![使用 YunoHost 安装 YunoHost Demo](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=yunohost_demo)
 

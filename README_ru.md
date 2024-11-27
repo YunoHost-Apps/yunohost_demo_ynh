@@ -5,7 +5,9 @@
 
 # YunoHost Demo для YunoHost
 
-[![Уровень интеграции](https://dash.yunohost.org/integration/yunohost_demo.svg)](https://ci-apps.yunohost.org/ci/apps/yunohost_demo/) ![Состояние работы](https://ci-apps.yunohost.org/ci/badges/yunohost_demo.status.svg) ![Состояние сопровождения](https://ci-apps.yunohost.org/ci/badges/yunohost_demo.maintain.svg)
+[![Уровень интеграции](https://apps.yunohost.org/badge/integration/yunohost_demo)](https://ci-apps.yunohost.org/ci/apps/yunohost_demo/)
+![Состояние работы](https://apps.yunohost.org/badge/state/yunohost_demo)
+![Состояние сопровождения](https://apps.yunohost.org/badge/maintained/yunohost_demo)
 
 [![Установите YunoHost Demo с YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=yunohost_demo)
 

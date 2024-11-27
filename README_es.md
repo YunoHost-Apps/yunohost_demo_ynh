@@ -5,7 +5,9 @@ No se debe editar a mano.
 
 # YunoHost Demo para Yunohost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/yunohost_demo.svg)](https://ci-apps.yunohost.org/ci/apps/yunohost_demo/) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/yunohost_demo.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/yunohost_demo.maintain.svg)
+[![Nivel de integración](https://apps.yunohost.org/badge/integration/yunohost_demo)](https://ci-apps.yunohost.org/ci/apps/yunohost_demo/)
+![Estado funcional](https://apps.yunohost.org/badge/state/yunohost_demo)
+![Estado En Mantención](https://apps.yunohost.org/badge/maintained/yunohost_demo)
 
 [![Instalar YunoHost Demo con Yunhost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=yunohost_demo)
 

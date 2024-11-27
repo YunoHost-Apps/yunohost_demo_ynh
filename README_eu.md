@@ -5,7 +5,9 @@ EZ editatu eskuz.
 
 # YunoHost Demo YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/yunohost_demo.svg)](https://ci-apps.yunohost.org/ci/apps/yunohost_demo/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/yunohost_demo.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/yunohost_demo.maintain.svg)
+[![Integrazio maila](https://apps.yunohost.org/badge/integration/yunohost_demo)](https://ci-apps.yunohost.org/ci/apps/yunohost_demo/)
+![Funtzionamendu egoera](https://apps.yunohost.org/badge/state/yunohost_demo)
+![Mantentze egoera](https://apps.yunohost.org/badge/maintained/yunohost_demo)
 
 [![Instalatu YunoHost Demo YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=yunohost_demo)
 
