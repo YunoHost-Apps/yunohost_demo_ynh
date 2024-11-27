@@ -25,10 +25,13 @@ ynh_config_add --template="manage.sh" --destination="$install_dir/manage.sh"
 chmod 711 "$install_dir/manage.sh"
 chown "$app:$app" "$install_dir/manage.sh"
 
-# ynh_exec_as_app mkdir "$install_dir/.ssh"
-# ynh_config_add --template="ssh_config" --destination="$install_dir/.ssh/config"
-# chmod 400 "$install_dir/"
-# chown "$app:$app" "$install_dir/"
+#=================================================
+# START CONTAINER
+#=================================================
+ynh_script_progression "Fetching, starting and customizing initial container..."
+
+ynh_exec_as_app "$install_dir/manage.sh" start
+etc_hosts_add
 
 #=================================================
 # SYSTEM CONFIGURATION
@@ -46,13 +49,6 @@ ynh_config_add_nginx
 ynh_config_add_logrotate
 
 ynh_config_add --template="sysctl.conf" --destination="/etc/sysctl.d/$app.conf"
-
-#=================================================
-# START CONTAINER
-#=================================================
-ynh_script_progression "Fetching, starting and customizing initial container..."
-
-ynh_exec_as_app "$install_dir/manage.sh" start
 
 # ynh_systemd_action --service="$app" --action="start"
 

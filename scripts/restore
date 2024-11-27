@@ -12,6 +12,14 @@ ynh_script_progression "Restoring the app main directory..."
 ynh_restore "$install_dir"
 
 #=================================================
+# START CONTAINER
+#=================================================
+ynh_script_progression "Fetching, starting and customizing initial container..."
+
+ynh_exec_as_app "$install_dir/manage.sh" start
+etc_hosts_add
+
+#=================================================
 # RESTORE SYSTEM CONFIGURATIONS
 #=================================================
 ynh_script_progression "Restoring system configurations related to $app..."
@@ -41,13 +49,6 @@ ynh_restore "/var/log/$app/"
 # ynh_systemctl --service="$app" --action="start"
 
 ynh_systemctl --service=nginx --action=reload
-
-#=================================================
-# START CONTAINER
-#=================================================
-ynh_script_progression "Fetching, starting and customizing initial container..."
-
-ynh_exec_as_app "$install_dir/manage.sh" start
 
 #=================================================
 # END OF SCRIPT

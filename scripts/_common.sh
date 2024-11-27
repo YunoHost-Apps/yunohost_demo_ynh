@@ -5,9 +5,7 @@
 #=================================================
 
 app_sanitized="${app//_/-}"
-container_name_1="${app_sanitized}-container1"
-container_name_2="${app_sanitized}-container2"
-
+container_name="${app_sanitized}-container1"
 
 setup_incus() {
     ynh_print_info "Configuring Incus..."
@@ -22,18 +20,13 @@ setup_incus() {
 
 
 etc_hosts_add() {
-    # Add a dummy 127.0.0.42 IP to satisfy nginx
-    for container in "$container_name_1" "$container_name_2" 127.0.0.42; do
-        line="$container $app-containers"
-        if ! grep -qxF "$line" /etc/hosts; then
-            echo "$line" >> /etc/hosts
-        fi
-    done
+    ip=$(ynh_exec_as_app "$install_dir/manage.sh" ip)
+    line="$ip $app-container"
+    if ! grep -qxF "$line" /etc/hosts; then
+        echo "$line" >> /etc/hosts
+    fi
 }
 
 etc_hosts_clear() {
-    for container in "$container_name_1" "$container_name_2" 127.0.0.42; do
-        line="$container $app-containers"
-        sed -i "/^$line$/d" /etc/hosts
-    done
+    sed -i "/^.* $app-container$/d" /etc/hosts
 }
