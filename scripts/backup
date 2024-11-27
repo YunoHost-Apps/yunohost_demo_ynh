@@ -16,8 +16,6 @@ ynh_backup "$install_dir"
 # SYSTEM CONFIGURATION
 #=================================================
 
-
-ynh_backup "/etc/nginx/conf.d/$app-upstreams.conf"
 ynh_backup "/etc/nginx/conf.d/$domain.d/$app.conf"
 
 ynh_backup "/etc/systemd/system/$app.service"

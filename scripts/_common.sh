@@ -19,3 +19,20 @@ setup_incus() {
 
     ynh_exec_as_app incus remote add yunohost https://repo.yunohost.org/incus --protocol simplestreams --public
 }
+
+
+etc_hosts_add() {
+    for container in "$container_name_1" "$container_name_2"; do
+        line="$container $app-containers"
+        if ! grep -qxF "$line" /etc/hosts; then
+            echo "$line" >> /etc/hosts
+        fi
+    done
+}
+
+etc_hosts_clear() {
+    for container in "$container_name_1" "$container_name_2"; do
+        line="$container $app-containers"
+        sed -i "/^$line$/d" /etc/hosts
+    done
+}
