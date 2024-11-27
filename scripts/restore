@@ -16,7 +16,7 @@ ynh_restore "$install_dir"
 #=================================================
 ynh_script_progression "Fetching, starting and customizing initial container..."
 
-ynh_exec_as_app "$install_dir/manage.sh" start
+ynh_exec_as_app "$install_dir/manage.sh" initialize
 etc_hosts_add
 
 #=================================================

@@ -29,7 +29,7 @@ chown "$app:$app" "$install_dir/manage.sh"
 #=================================================
 ynh_script_progression "Fetching, starting and customizing initial container..."
 
-ynh_exec_as_app "$install_dir/manage.sh" start
+ynh_exec_as_app "$install_dir/manage.sh" initialize
 etc_hosts_add
 
 # ynh_systemd_action --service="$app" --action="start"
