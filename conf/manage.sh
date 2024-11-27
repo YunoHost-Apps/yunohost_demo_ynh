@@ -34,7 +34,7 @@ start() {
         *) echo "Invalid container ID $1" ; return 1 ;;
     esac
     download_image
-    if [[ "$(jq '[.[] | .name] | index("'"$container"'")')" != "null" ]]; then
+    if [[ "$(incus list --format json | jq '[.[] | .name] | index("'"$container"'")')" != "null" ]]; then
         incus delete --force "$container"
     fi
 
