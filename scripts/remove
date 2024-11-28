@@ -11,8 +11,9 @@ ynh_script_progression "Removing system configurations related to $app..."
 
 ynh_config_remove_logrotate
 
-ynh_safe_rm "/etc/systemd/system/$app.timer"
-ynh_config_remove_systemd
+ynh_safe_rm "/etc/systemd/system/$app-restart.timer"
+ynh_safe_rm "/etc/systemd/system/$app-restart.service"
+systemctl daemon-reload
 
 ynh_exec_as_app "$install_dir/manage.sh" stop
 

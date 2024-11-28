@@ -11,9 +11,9 @@ source /usr/share/yunohost/helpers
 #=================================================
 # STOP SYSTEMD SERVICE
 #=================================================
-# ynh_script_progression "Stopping a systemd service..."
+ynh_script_progression "Temporarily disabling a systemd timer..."
 
-# ynh_systemctl --service="$app" --action="stop"
+ynh_systemd_action --service="$app-restart.timer" --action="stop"
 
 #=================================================
 # ADD A CONFIGURATION
@@ -31,23 +31,21 @@ ynh_script_progression "Fetching, starting and customizing initial container..."
 
 ynh_exec_as_app "$install_dir/manage.sh" clear
 ynh_exec_as_app "$install_dir/manage.sh" initialize
-etc_hosts_clear
-etc_hosts_add
-
-# ynh_systemd_action --service="$app" --action="start"
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
 ynh_script_progression "Upgrading system configurations related to $app..."
 
+etc_hosts_clear
 etc_hosts_add
 
 ynh_config_add_nginx
 
-ynh_config_add --template="systemd.timer" --destination="/etc/systemd/system/$app.timer"
-ynh_config_add_systemd
-systemctl disable "$app.service" --quiet
+# don't use the helpers because the service has a custom name and workflow
+ynh_config_add --template="systemd.timer" --destination="/etc/systemd/system/$app-restart.timer"
+ynh_config_add --template="systemd.service" --destination="/etc/systemd/system/$app-restart.service"
+systemctl daemon-reload
 
 ynh_config_add_logrotate
 
@@ -58,7 +56,7 @@ ynh_config_add --template="sysctl.conf" --destination="/etc/sysctl.d/$app.conf"
 #=================================================
 ynh_script_progression "Enabling the regular restart service..."
 
-systemctl enable "$app.timer" --now --quiet
+systemctl enable "$app-restart.timer" --now --quiet
 
 #=================================================
 # END OF SCRIPT

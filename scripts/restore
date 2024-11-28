@@ -17,7 +17,6 @@ ynh_restore "$install_dir"
 ynh_script_progression "Fetching, starting and customizing initial container..."
 
 ynh_exec_as_app "$install_dir/manage.sh" initialize
-etc_hosts_add
 
 #=================================================
 # RESTORE SYSTEM CONFIGURATIONS
@@ -28,8 +27,8 @@ etc_hosts_add
 
 ynh_restore "/etc/nginx/conf.d/$domain.d/$app.conf"
 
-ynh_restore "/etc/systemd/system/$app.timer"
-ynh_restore "/etc/systemd/system/$app.service"
+ynh_restore "/etc/systemd/system/$app-restore.timer"
+ynh_restore "/etc/systemd/system/$app-restore.service"
 
 ynh_restore "/etc/logrotate.d/$app"
 
@@ -44,7 +43,7 @@ ynh_restore "/var/log/$app/"
 #=================================================
 ynh_script_progression "Enabling the regular restart service..."
 
-systemctl enable "$app.timer" --now --quiet
+systemctl enable "$app-restart.timer" --now --quiet
 
 ynh_systemctl --service=nginx --action=reload
 
