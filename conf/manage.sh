@@ -34,6 +34,8 @@ initialize() {
     incus launch "$IMAGE" "$container"
     _customize "$container"
     incus snapshot create "$container" "$snapshot" --no-expiry
+
+    echo "The container was rebuilt, its IPv4 probably changed. Don't forget to update the /etc/hosts!!"
 }
 
 ip() {
