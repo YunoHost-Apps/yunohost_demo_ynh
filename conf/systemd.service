@@ -8,7 +8,7 @@ User=__APP__
 Group=__APP__
 
 WorkingDirectory=__INSTALL_DIR__/
-ExecStart=./manage.sh restart
+ExecStart=__INSTALL_DIR__/manage.sh restart
 StandardOutput=append:/var/log/__APP__/__APP__.log
 StandardError=inherit
 Restart=on-failure
