@@ -45,9 +45,9 @@ etc_hosts_add
 
 ynh_config_add_nginx
 
-# ynh_config_add_systemd
-
-# yunohost service add "$app" --description="A short description of the app" --log="/var/log/$app/$app.log"
+ynh_config_add --template="systemd.timer" --destination="/etc/systemd/system/$app.timer"
+ynh_config_add_systemd
+systemctl disable "$app.service" --quiet
 
 ynh_config_add_logrotate
 
@@ -56,9 +56,9 @@ ynh_config_add --template="sysctl.conf" --destination="/etc/sysctl.d/$app.conf"
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
-# ynh_script_progression "Starting a systemd service..."
+ynh_script_progression "Enabling the regular restart service..."
 
-# ynh_systemctl --service="$app" --action="start"
+systemctl enable "$app.timer" --now --quiet
 
 #=================================================
 # END OF SCRIPT

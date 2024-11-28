@@ -28,10 +28,8 @@ etc_hosts_add
 
 ynh_restore "/etc/nginx/conf.d/$domain.d/$app.conf"
 
-# ynh_restore "/etc/systemd/system/$app.service"
-# systemctl enable "$app.service" --quiet
-
-# yunohost service add "$app" --description="A short description of the app" --log="/var/log/$app/$app.log"
+ynh_restore "/etc/systemd/system/$app.timer"
+ynh_restore "/etc/systemd/system/$app.service"
 
 ynh_restore "/etc/logrotate.d/$app"
 
@@ -42,11 +40,11 @@ ynh_restore "/etc/logrotate.d/$app"
 ynh_restore "/var/log/$app/"
 
 #=================================================
-# RELOAD NGINX AND PHP-FPM OR THE APP SERVICE
+# START SYSTEMD SERVICE
 #=================================================
-# ynh_script_progression "Reloading NGINX web server and $app's service..."
+ynh_script_progression "Enabling the regular restart service..."
 
-# ynh_systemctl --service="$app" --action="start"
+systemctl enable "$app.timer" --now --quiet
 
 ynh_systemctl --service=nginx --action=reload
 

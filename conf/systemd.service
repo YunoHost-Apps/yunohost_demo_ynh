@@ -1,5 +1,5 @@
 [Unit]
-Description=Service for YunoHost Demo (__APP__)
+Description=YunoHost Demo restart service
 After=network.target
 
 [Service]
@@ -8,7 +8,7 @@ User=__APP__
 Group=__APP__
 
 WorkingDirectory=__INSTALL_DIR__/
-ExecStart=some_command
+ExecStart=./manage.sh restart
 StandardOutput=append:/var/log/__APP__/__APP__.log
 StandardError=inherit
 Restart=on-failure
