@@ -5,7 +5,7 @@
 #=================================================
 
 app_sanitized="${app//_/-}"
-container_name="${app_sanitized}-container1"
+container_name="${app_sanitized}-container"
 
 setup_incus() {
     ynh_print_info "Configuring Incus..."
