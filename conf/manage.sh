@@ -74,11 +74,7 @@ main() {
         exit 1
     fi
     case "$1" in
-        initialize) initialize ;;
-        ip) ip ;;
-        start) start ;;
-        clear) clear ;;
-        restart) restart ;;
+        initialize|ip|start|clear|restart) "$1" ;;
         -h|--help|help) help; exit 0 ;;
         *) echo "Unknown command $1" ; help; exit 1 ;;
     esac

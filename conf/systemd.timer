@@ -2,8 +2,7 @@
 Description=YunoHost Demo restart every 30 minutes
 
 [Timer]
-OnBootSec=2min
-OnUnitActiveSec=30min
+OnCalendar=*:0/30
 
 [Install]
 WantedBy=timers.target
