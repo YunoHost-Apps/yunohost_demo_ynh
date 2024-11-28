@@ -12,7 +12,7 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression "Temporarily disabling a systemd timer..."
 
-ynh_systemd_action --service="$app-restart.timer" --action="stop"
+ynh_systemctl --service="$app-restart.timer" --action="stop"
 
 #=================================================
 # SPECIFIC MODIFICATIONS
