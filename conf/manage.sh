@@ -25,6 +25,11 @@ _customize() {
 }
 
 initialize() {
+    remote_url="https://repo.yunohost.org/incus"
+    if ! incus remote list --columns u -f compact | grep "$remote_url"; then
+        incus remote add yunohost "$remote_url" --protocol simplestreams --public
+    fi
+
     incus image copy "yunohost:$IMAGE" local: --copy-aliases --auto-update
     incus launch "$IMAGE" "$container"
     _customize "$container"

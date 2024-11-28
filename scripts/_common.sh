@@ -14,8 +14,6 @@ setup_incus() {
     usermod -a -G incus-admin "$app"
 
     incus admin init --auto # --storage-backend=dir
-
-    ynh_exec_as_app incus remote add yunohost https://repo.yunohost.org/incus --protocol simplestreams --public
 }
 
 
