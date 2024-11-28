@@ -40,8 +40,9 @@ start() {
     incus start "$container"
 }
 
-stop() {
+clear() {
     incus stop "$container"
+    incus delete --force "$container"
 }
 
 restart() {
@@ -56,7 +57,7 @@ Available <command>s:
     initialize: Start the container, customize it for the configured domain, and create a snapshot
     ip: prints the IP address of the (started) container
     start: Start the container from the snapshot
-    stop: Stop the container
+    clear: Stop and delete the container and its snapshots
     restart: Restart the container from the snapshot
 EOF
 }
@@ -71,7 +72,7 @@ main() {
         initialize) initialize ;;
         ip) ip ;;
         start) start ;;
-        stop) stop ;;
+        clear) clear ;;
         restart) restart ;;
         -h|--help|help) help; exit 0 ;;
         *) echo "Unknown command $1" ; help; exit 1 ;;
