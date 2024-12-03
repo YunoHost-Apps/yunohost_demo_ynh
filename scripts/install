@@ -23,6 +23,9 @@ ynh_config_add --template="manage.sh" --destination="$install_dir/manage.sh"
 chmod 711 "$install_dir/manage.sh"
 chown "$app:$app" "$install_dir/manage.sh"
 
+ynh_config_add --template="502.html" --destination="$install_dir/502.html"
+chown "$app:$app" "$install_dir" "$install_dir/502.html"
+
 #=================================================
 # START CONTAINER
 #=================================================
