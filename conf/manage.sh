@@ -52,11 +52,6 @@ clear() {
     incus delete --force "$container"
 }
 
-restart() {
-    incus snapshot restore "$container" "$snapshot"
-}
-
-
 help() {
     cat <<EOF
 Usage: $0 <command>
@@ -65,7 +60,6 @@ Available <command>s:
     ip: prints the IP address of the (started) container
     start: Start the container from the snapshot
     clear: Stop and delete the container and its snapshots
-    restart: Restart the container from the snapshot
 EOF
 }
 
@@ -76,7 +70,7 @@ main() {
         exit 1
     fi
     case "$1" in
-        initialize|ip|start|clear|restart) "$1" ;;
+        initialize|ip|start|clear) "$1" ;;
         -h|--help|help) help; exit 0 ;;
         *) echo "Unknown command $1" ; help; exit 1 ;;
     esac
